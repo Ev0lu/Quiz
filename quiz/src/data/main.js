@@ -1,4 +1,6 @@
-var question_block = new Vue({
+import axios from 'axios';
+
+var question_block = {
   el: '#poll_block',
   data: {
     other_seen: false,
@@ -485,13 +487,13 @@ var question_block = new Vue({
           method: "post",
       })
 
-      this.counter++,
+      this.counter++
       this.other_seen = false
       this.other_answer = ""
       this.answer_array = []
     },
     back: function () {
-      this.counter--,
+      this.counter--
       this.complete_score = (this.counter / 28 * 100).toFixed(0).toString() + '%'
       this.other_seen = false
       this.other_answer = ""
@@ -525,4 +527,5 @@ var question_block = new Vue({
     }
   }
 }
-)
+
+export default question_block

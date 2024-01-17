@@ -2,26 +2,29 @@ import React, { useEffect, useState } from "react";
 import './likert.css';
 
 export default function Likert(props) {
-    
+    const [data,setData] = useState(0)
     const [emoji,setEmoji] = useState('')
     useEffect(()=>{
-        if(props.data == 0){
+        if(data == 0){
             setEmoji("😔")
-        }else if(props.data == 25){
+        }else if(data == 25){
             setEmoji("😆")
-        }else if(props.data == 50){
+        }else if(data == 50){
             setEmoji("😊")
-        }else if(props.data == 75){
+        }else if(data == 75){
             setEmoji("😇")
         }
-        else if(props.data == 100){
+        else if(data == 100){
             setEmoji("🥰")
         }
-    },[props.data])
+    },[data])
     return(
         <div className="likert_scale">
-            <h1>{emoji}</h1>
-            <input className={props.data>50?'heigh':'less'} type="range" min="0" max="100" step="25" value={props.data} onChange={(e)=>props.setData(e.target.value)} />
+                <h1>{emoji}</h1>
+            <input className={data>50?'heigh':'less'} type="range" min="0" max="100" step="25" value={data} onChange={(e)=> {
+            setData(e.target.value)
+            props.getMultipleAnswer([data])}} />
+
         </div>
     );
 }

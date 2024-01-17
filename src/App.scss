@@ -24,7 +24,7 @@ ul{
 
     li{
           padding: 15px;
-          border: 2px solid rgba(0, 0, 0, 0.1);
+          border: 2.5px solid rgba(0, 0, 0, 0.1);
           border-radius: 15px;
           margin-bottom: 10px;
           font-family: Golos;
@@ -33,17 +33,28 @@ ul{
           transition: all 0.1s ease-in-out;
     
           &:hover{
-            border: 2px solid rgba(0, 0, 0, 0.3);
+            border: 2.5px solid rgba(0, 0, 0, 0.3);
           }
           &:active{
             box-shadow: none;
-            border: 2px solid rgba(0, 0, 0, 0.5);
+            border: 2.5px solid rgba(0, 0, 0, 0.5);
           }
     }
 }
+.quiz_likert_div{
+  border: none;
+  &:hover{
+    border: none;
+  }
+  &:active{
+    box-shadow: none;
+    border:none;
+  }
 
+}
 .current_li{
-  border: 2px solid rgba(0, 0, 0, 0.6);
+
+  border: 2.5px solid #4FD1C5;
 }
 .input{
   font-size: 14px;
@@ -69,6 +80,14 @@ ul{
 
 .quiz_input{
   margin-bottom: 5px;
+}
+
+.quiz_likert_div{
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+
+   margin-bottom: 7px;
 }
 
 .quiz{

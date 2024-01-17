@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Likert from './likert';
 
 function Quiz(props) {
-    const [data,setData] = useState(0)
-    const [inputValue, setInputValue] = useState('')
+
+    const [inputValue, setInputValue] = useState([])
     const [liActive, setLiActive] = useState([])
     const [hintIn, setHintIn] = useState('')
     const [flag, setFlag] = useState(0)
@@ -32,8 +32,7 @@ function Quiz(props) {
           setFlag(1)
         }
         setHintIn("hintIn")
-        props.setAnswersText([...props.answersText,inputValue])
-        setInputValue('')
+        setInputValue([])
         setLiActive('')
         if (flag == 1 && props.question.answers[liActive.at(-1)].pointer == "22") {
           props.setId('18')
@@ -81,8 +80,7 @@ function Quiz(props) {
                                           <button className='quiz_btn_el' onClick={() => {
                                          
                                             props.setId(props.question.answers[0].pointer)
-                                            setInputValue('')
-                                            setLiActive('')
+
                                             }}>Вперед</button>
                                         </div>
                   </div>
@@ -109,6 +107,8 @@ function Quiz(props) {
                                               <input key={key} placeholder={inputValue} defaultValue='' value={inputValue}   onChange={(e) => {
                                                 setInputValue(e.target.value)
                                                 handleInputChange(key, e.target.value)
+                                                props.setAnswersText([inputValue])
+
                                               }}  type="text" className="input" />
                                             )
                                           }
@@ -121,10 +121,7 @@ function Quiz(props) {
                                                   <button className='quiz_btn_el' onClick={() => {
                                                     checkTyped()
                                                     props.postRequest()
-                                                    props.setAnswers([])
-                                                    props.setAnswersText([])
-                                                    setInputValue('')
-                                                    setLiActive('')
+
                                                     }}>Вперед</button>
                                                 </div>
 
@@ -151,6 +148,7 @@ function Quiz(props) {
                                    <input key={key} placeholder={inputValue} defaultValue='' value={inputValue} onChange={(e) => {
                                     setInputValue(e.target.value)
                                     handleInputChange(key, e.target.value)
+                                    props.setAnswersText([inputValue])
                                   }}  type="text" className="input" />
                                  )
                                }
@@ -163,10 +161,6 @@ function Quiz(props) {
                                        <button className='quiz_btn_el' onClick={() => {
                                         checkTyped()
                                         props.postRequest()
-                                        props.setAnswers([])
-                                        props.setAnswersText([])
-                                        setInputValue('')
-                                        setLiActive('')
                                          }}>Вперед</button>
                                      </div>
 
@@ -193,6 +187,7 @@ function Quiz(props) {
                                               <input key={key}  placeholder={inputValue} defaultValue='' value={inputValue}  onChange={(e) => {
                                                 setInputValue(e.target.value)
                                                 handleInputChangeOne(key, e.target.value)
+                                                props.setAnswersText([inputValue])
                                               }}  type="text" className="input" />
                                             )
                                           } else if (answer.type == "exception"){
@@ -213,10 +208,6 @@ function Quiz(props) {
                                                   <button className='quiz_btn_el' onClick={() => {
                                                     checkTyped()
                                                     props.postRequest()
-                                                    props.setAnswers([])
-                                                    props.setAnswersText([])
-                                                    setInputValue('')
-                                                    setLiActive('')
                                                     }}>Вперед</button>
                                                 </div>
 
@@ -225,16 +216,28 @@ function Quiz(props) {
                   :
                   <>
                   <h1>{props.question.text}</h1>
-                  <Likert data={data} setData={setData} />
+                  <ul>
+                             {Object.keys(props.question.answers).map((key => {
+                               const answer = props.question.answers[key]
+                               if (answer.type == "range") {
+                                   return (
+                                    <>
+                                     <li key={key} className='quiz_likert_div'>{answer.text}
+
+                                     </li>
+                                     <Likert  getMultipleAnswer={getMultipleAnswer}/>
+                                     
+                                     </>
+                                   )
+                               }
+                              }))}
+                  </ul>
+
                   <div className="quiz_btn">
                                                     <button className='quiz_btn_el' onClick={() => {
                                                       setLiActive([0])
                                                       props.setId(props.question.answers[0].pointer)
                                                       props.postRequest()
-                                                      props.setAnswers([])
-                                                      props.setAnswersText([])
-                                                      setInputValue('')
-                                                      setLiActive('')
                                                       }}>Вперед</button>
                                                 </div>
                   </>

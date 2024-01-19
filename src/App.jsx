@@ -55,10 +55,8 @@ useEffect(() => {
 } */}
 
 const postRequest = async () => {
-console.log(answersText)
   let answersStr = answers.toString()
   let answersTextStr = answersText.toString()
-  console.log(answersTextStr)
   let user = {
     page_id: window.location.pathname,
     useragent: window.navigator.userAgent,

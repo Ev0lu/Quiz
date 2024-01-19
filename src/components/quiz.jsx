@@ -104,7 +104,7 @@ function Quiz(props) {
                                               )
                                           } else if (answer.type == "text"){
                                             return(
-                                              <input key={key} placeholder='Другое' defaultValue='' value={inputValue}   onChange={(e) => {
+                                              <input key={key} placeholder='                                             Другое' defaultValue='' value={inputValue}   onChange={(e) => {
                                                 setInputValue(e.target.value)
                                                 handleInputChange(key, e.target.value)
                                                 props.setAnswersText([e.target.value])
@@ -144,7 +144,7 @@ function Quiz(props) {
                                    )
                                } else if (answer.type == "text"){
                                  return(
-                                   <input key={key} placeholder={inputValue} defaultValue='' value={inputValue} onChange={(e) => {
+                                   <input key={key} placeholder='                                             Другое' defaultValue='' value={inputValue} onChange={(e) => {
                                     setInputValue(e.target.value)
                                     handleInputChange(key, e.target.value)
                                     props.setAnswersText([e.target.value])
@@ -183,7 +183,7 @@ function Quiz(props) {
                                               )
                                           } else if (answer.type == "text"){
                                             return(
-                                              <input key={key}  placeholder={inputValue} defaultValue='' value={inputValue}  onChange={(e) => {
+                                              <input key={key}  placeholder='                                             Другое' defaultValue='' value={inputValue}  onChange={(e) => {
                                                 setInputValue(e.target.value)
                                                 handleInputChangeOne(key, e.target.value)
                                                 props.setAnswersText([e.target.value])
